@@ -16,7 +16,6 @@
         <a href="pricing.html" data-page="pricing.html">Pricing</a>
         <a href="about.html" data-page="about.html">About</a>
       <a href="brand.html" data-page="brand.html">Brand</a>
-        <a href="brand.html" data-page="brand.html">Brand</a>
       </div>
       <a href="#download" class="nav-cta">Download</a>
       <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
@@ -34,7 +33,6 @@
       <a href="pricing.html" data-page="pricing.html">Pricing</a>
       <a href="about.html" data-page="about.html">About</a>
       <a href="brand.html" data-page="brand.html">Brand</a>
-        <a href="brand.html" data-page="brand.html">Brand</a>
       <a href="index.html#download" class="nav-cta-mobile">Download</a>
     </div>
   </nav>

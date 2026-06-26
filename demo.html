@@ -92,25 +92,48 @@
       document.getElementById('coachBtn').disabled = true;
       document.getElementById('result').classList.remove('show');
       document.getElementById('loading').style.display = 'block';
+      const sugDiv = document.getElementById('suggestions');
+      sugDiv.innerHTML = '';
+      const badge = document.getElementById('riskBadge');
+      const percEl = document.getElementById('perception');
       try {
         const res = await fetch(API + '/v1/analyze', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'text/event-stream'
+          },
           body: JSON.stringify({ draft: draft, mode: 'coach' })
         });
-        const data = await res.json();
-        document.getElementById('loading').style.display = 'none';
-        if (data.risk_level) {
-          const badge = document.getElementById('riskBadge');
-          badge.textContent = data.risk_level.toUpperCase();
-          badge.className = 'risk-badge risk-' + data.risk_level;
-          document.getElementById('perception').textContent = data.perception;
-          const sugDiv = document.getElementById('suggestions');
-          sugDiv.innerHTML = '';
-          (data.suggestions || []).forEach(function(s) {
-            sugDiv.innerHTML += '<div class="suggestion"><div class="axis">' + s.axis + '</div><div class="rewrite">' + s.text + '</div><div class="rationale">' + s.rationale + '</div></div>';
-          });
-          document.getElementById('result').classList.add('show');
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          buffer += decoder.decode(value, { stream: true });
+          const lines = buffer.split('\n');
+          buffer = lines.pop();
+          for (const line of lines) {
+            if (!line.startsWith('data: ')) continue;
+            const payload = line.slice(6).trim();
+            if (payload === '[DONE]') continue;
+            try {
+              const evt = JSON.parse(payload);
+              if (evt.type === 'perception') {
+                document.getElementById('loading').style.display = 'none';
+                percEl.textContent = evt.text;
+                document.getElementById('result').classList.add('show');
+              } else if (evt.type === 'suggestion') {
+                sugDiv.innerHTML += '<div class="suggestion"><div class="axis">' + evt.axis + '</div><div class="rewrite">' + evt.text + '</div><div class="rationale">' + (evt.rationale || '') + '</div></div>';
+              } else if (evt.type === 'complete') {
+                badge.textContent = evt.risk_level.toUpperCase();
+                badge.className = 'risk-badge risk-' + evt.risk_level;
+              } else if (evt.type === 'error') {
+                document.getElementById('loading').innerHTML = '⚠️ ' + evt.message;
+              }
+            } catch (e) {}
+          }
         }
       } catch (e) {
         document.getElementById('loading').innerHTML = '⚠️ Something went wrong. Try again.';

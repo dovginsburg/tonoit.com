@@ -611,6 +611,29 @@ footer {
 
 .pricing-card .btn { width: 100%; }
 
+/* Pro card — the two subscribe buttons stack inside the card.
+   The error banner + fine-print sit beneath so a failed checkout
+   doesn't bounce the visitor off the page. */
+.pro-ctas { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+.pro-ctas .btn { width: 100%; }
+.pro-checkout-error {
+  margin: 8px 0 0;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: rgba(248, 113, 113, 0.12);
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  color: #fca5a5;
+  font-size: 0.86rem;
+  line-height: 1.4;
+}
+.pro-checkout-note {
+  margin: 8px 0 0;
+  color: var(--text-softer);
+  font-size: 0.8rem;
+  line-height: 1.45;
+  text-align: center;
+}
+
 /* ---------- FEATURE DETAIL ROW (features page) ---------- */
 .feature-detail {
   display: grid;

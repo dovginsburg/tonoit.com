@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="thanks for going pro — tono pro is active on your account. check your email for the stripe receipt." />
+  <meta name="robots" content="noindex" />
+  <title>you're in — tono pro</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/styles.css" />
+  <style>
+    /* Page-specific layout for the post-checkout thank-you screen.
+       Kept inline so we don't pollute the shared stylesheet for one-off
+       copy. */
+    .welcome-wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 60px 24px 40px;
+      text-align: center;
+    }
+    .welcome-check {
+      width: 72px; height: 72px;
+      margin: 0 auto 24px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .welcome-check svg { width: 36px; height: 36px; color: var(--accent-light); }
+    .welcome-wrap h1 { font-size: 2.4rem; margin: 0 0 16px; }
+    .welcome-wrap p { color: var(--text-softer); font-size: 1.05rem; line-height: 1.55; margin: 0 0 12px; }
+    .welcome-steps {
+      margin: 32px auto 0;
+      padding: 0;
+      list-style: none;
+      text-align: left;
+      max-width: 460px;
+    }
+    .welcome-steps li {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 10px;
+    }
+    .welcome-steps li .num {
+      flex: 0 0 auto;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 600; font-size: 0.9rem;
+    }
+    .welcome-steps li .body { color: var(--text); line-height: 1.45; }
+    .welcome-ctas {
+      margin: 36px 0 0;
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    }
+    .welcome-foot {
+      margin-top: 28px; color: var(--text-softer);
+      font-size: 0.86rem;
+    }
+    .welcome-foot a { color: var(--accent-light); }
+  </style>
+</head>
+<body>
+
+  <main>
+    <header class="hero" style="padding: 0;">
+      <div class="hero-inner">
+        <section class="welcome-wrap reveal">
+          <div class="welcome-check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <span class="pill fade-up"><span class="pill-dot"></span> pro · active</span>
+          <h1 class="fade-up delay-1">you're in.</h1>
+          <p class="hero-tag fade-up delay-2">
+            check your email for the stripe receipt. tono pro is active on your account — unlimited rewrites, style memory, and the rest of the pro toolkit light up the moment you sign in on your phone.
+          </p>
+
+          <ol class="welcome-steps">
+            <li>
+              <span class="num">1</span>
+              <span class="body"><strong>install tono</strong> on your iphone or android. the keyboard is where the coaching happens — search your app store, or use the buttons below.</span>
+            </li>
+            <li>
+              <span class="num">2</span>
+              <span class="body"><strong>sign in</strong> with the same email you used at checkout. your pro status syncs to every device that signs in.</span>
+            </li>
+            <li>
+              <span class="num">3</span>
+              <span class="body"><strong>enable the tono keyboard</strong> in your phone's settings → general → keyboard → keyboards. you'll see pro features the moment you start typing.</span>
+            </li>
+          </ol>
+
+          <div class="welcome-ctas">
+            <a href="index.html#download" class="btn btn-primary">download tono</a>
+            <a href="demo.html" class="btn btn-ghost">try the demo first</a>
+          </div>
+
+          <p class="welcome-foot">
+            need to update your card or cancel? use the link in your stripe receipt, or visit <a href="pricing.html">pricing</a>.
+          </p>
+        </section>
+      </div>
+    </header>
+  </main>
+
+  <script src="assets/nav-footer.js"></script>
+</body>
+</html>

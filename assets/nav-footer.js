@@ -115,8 +115,15 @@
             io.unobserve(e.target);
           }
         });
-      }, { threshold: 0.1 });
+      }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
       reveals.forEach(function (el) { io.observe(el); });
+      // Safety net: if the observer hasn't fired for any reveal within
+      // 1.2s (screenshot tools, slow scroll, observer bug), force them
+      // all visible. Without this, half the page can stay at opacity:0.
+      setTimeout(function () {
+        document.body.classList.add('reveal-fallback-on');
+        reveals.forEach(function (el) { el.classList.add('visible'); });
+      }, 1200);
     } else {
       reveals.forEach(function (el) { el.classList.add('visible'); });
     }

@@ -875,6 +875,16 @@ footer {
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
+/* Safety net: if the IntersectionObserver never fires (e.g. screenshot
+   tools, no-JS bots, or the script fails to load) the body gets the
+   .reveal-fallback-on class via JS after a 1.2s timeout — content
+   becomes visible immediately instead of staying at opacity:0 forever. */
+body.reveal-fallback-on .reveal {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }

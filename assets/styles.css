@@ -126,12 +126,17 @@ button { font-family: inherit; cursor: pointer; }
   padding: 6px;
 }
 .nav-burger svg { width: 24px; height: 24px; }
+/* Hidden on desktop — the .nav-mobile drawer is for ≤820px only.
+   The previous version had this rule inside the media query, which
+   meant desktop had no `display` rule and the drawer leaked as a
+   plain text strip ("Home Features Demo Pricing About Brand Download")
+   under the main nav. */
+.nav-mobile { display: none; }
 
 @media (max-width: 820px) {
   .nav-links { display: none; }
   .nav-burger { display: inline-flex; }
   .nav-mobile {
-    display: none;
     position: fixed;
     top: 60px;
     left: 0; right: 0;

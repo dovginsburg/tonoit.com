@@ -16,8 +16,8 @@ const POSTS = [
   {
     date: '2026-07-08',
     label: 'product',
-    title: 'public beta opens for the ios keyboard',
-    body: 'pro subscribers can install the tono ios keyboard today. free beta slots open weekly.',
+    title: 'one choice, one rewrite',
+    body: 'tone selection now describes the current product contract: one explicit choice and one selected result.',
   },
   {
     date: '2026-07-04',
@@ -79,7 +79,7 @@ export default function BlogPage() {
         <p className="mt-12 text-[13px] text-tono-text-softer text-center">
           for the full changelog, see{' '}
           <a
-            href="https://github.com/dovginsburg/Tono-/commits/main"
+            href="https://github.com/dovginsburg/tono-platform/commits/main"
             className="underline hover:text-tono-text"
           >
             github

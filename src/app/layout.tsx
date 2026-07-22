@@ -5,7 +5,7 @@ import TonoFooter from './TonoFooter';
 
 export const metadata: Metadata = {
   title: 'tono — say what you mean',
-  description: 'four ways to say it. pick one, copy, send.',
+  description: 'choose a tone. get one rewrite. decide what to send.',
   applicationName: 'tono',
   appleWebApp: {
     capable: true,

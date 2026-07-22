@@ -11,7 +11,7 @@ import type { Metadata } from 'next'
 import CheckoutSuccessClient from './CheckoutSuccessClient'
 
 export const metadata: Metadata = {
-  title: 'you’re on tono pro — say what you mean',
+  title: 'tono pro confirmed — say what you mean',
   description: 'subscription confirmed. welcome to tono pro.',
   robots: { index: false, follow: false },
 }

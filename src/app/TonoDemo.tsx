@@ -7,7 +7,7 @@
 // and a risk assessment.
 //
 // Brand voice (lowercase, dry, no exclamation):
-//   - empty:  "paste any text. four rewrites in two seconds."
+//   - empty:  "paste a draft. choose one tone."
 //   - loading:"thinking…"
 //   - error:  "couldn't reach tono. check your connection and try again."
 //
@@ -114,8 +114,7 @@ function formatRemaining(seconds: number): string {
   return mins === 0 ? `${hours}h` : `${hours}h ${mins}m`
 }
 
-const EXAMPLE_PLACEHOLDER =
-  'paste any text. four rewrites in two seconds.'
+const EXAMPLE_PLACEHOLDER = 'paste a draft. choose one tone.'
 
 const TONE_ORDER: Axis[] = ['warmer', 'clearer', 'funnier', 'safer']
 
@@ -128,7 +127,7 @@ type NetworkStatus = 'online' | 'offline'
 //   rate_limited: a 429 was returned; show countdown + disable button
 //   server_error: a 5xx was returned; show retry CTA + preserve draft
 //   offline_no_request: offline and the last attempt failed on network
-//   result: success — show the 4 result cards
+//   result: success — show the selected result card
 type DemoStatus = 'idle' | 'pending' | 'rate_limited' | 'server_error' | 'result'
 
 export default function TonoDemo() {
@@ -137,6 +136,7 @@ export default function TonoDemo() {
   const [error, setError] = useState<string | null>(null)
   const [result, setResult] = useState<AnalyzeResponse | null>(null)
   const [copied, setCopied] = useState<Axis | null>(null)
+  const [selectedTone, setSelectedTone] = useState<Axis>('safer')
   const taRef = useRef<HTMLTextAreaElement | null>(null)
   // Track the latest in-flight request id so stale responses don't
   // overwrite a newer result if a user fires multiple pastes quickly.
@@ -238,7 +238,7 @@ export default function TonoDemo() {
       const res = await fetch('/api/analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text }),
+        body: JSON.stringify({ text, axis: selectedTone }),
       })
       if (myId !== reqIdRef.current) return // a newer request superseded this one
 
@@ -286,7 +286,12 @@ export default function TonoDemo() {
 
       const data = (await res.json()) as AnalyzeResponse
       if (myId !== reqIdRef.current) return
-      setResult(data)
+      setResult({
+        ...data,
+        suggestions: (data.suggestions ?? [])
+          .filter((suggestion) => suggestion.axis === selectedTone)
+          .slice(0, 1),
+      })
       setStatus('result')
     } catch (e) {
       if (myId !== reqIdRef.current) return
@@ -304,7 +309,7 @@ export default function TonoDemo() {
     } finally {
       if (myId === reqIdRef.current) setLoading(false)
     }
-  }, [draft, loading, status, startRetryCountdown])
+  }, [draft, loading, selectedTone, status, startRetryCountdown])
 
   const retry = useCallback(() => {
     // Clear the current error state and re-fire. Safe to call from
@@ -357,7 +362,7 @@ export default function TonoDemo() {
 
   return (
     <aside
-      aria-label="try tono — paste a draft and get four rewrites"
+      aria-label="try tono — choose a tone and get one rewrite"
       className="relative"
     >
       {/* soft glow behind the demo card */}
@@ -386,7 +391,7 @@ export default function TonoDemo() {
               </span>
             ) : (
               <span className="text-[10px] font-mono lowercase text-tono-muted">
-                free · no signup
+                demo
               </span>
             )}
           </div>
@@ -416,6 +421,24 @@ export default function TonoDemo() {
           />
         </div>
 
+        <div role="group" aria-label="choose one rewrite tone" className="flex flex-wrap gap-2 px-4 pb-3">
+          {TONE_ORDER.map((tone) => (
+            <button
+              key={tone}
+              type="button"
+              onClick={() => setSelectedTone(tone)}
+              aria-pressed={selectedTone === tone}
+              className={`min-h-[44px] px-3 rounded-[10px] border font-semibold text-[12px] transition tone-text-${tone} ${
+                selectedTone === tone
+                  ? `tone-bg-soft-${tone} border-current`
+                  : 'bg-tono-bg-elev border-tono-border'
+              }`}
+            >
+              {tone}
+            </button>
+          ))}
+        </div>
+
         {/* action row */}
         <div className="flex items-center justify-between gap-3 px-4 py-3 border-t border-tono-border">
           <span className="text-[10px] font-mono lowercase text-tono-muted">
@@ -426,8 +449,8 @@ export default function TonoDemo() {
                 ? `wait ${formatRemaining(retryInSec)}`
                 : 'wait one moment'
               : result
-              ? 'pick one — copy, send'
-              : 'enter text → rewrite'}
+              ? `${selectedTone} ready — copy when it fits`
+              : `choose ${selectedTone} → rewrite`}
           </span>
           <button
             type="button"
@@ -510,7 +533,7 @@ export default function TonoDemo() {
                 <div className="px-2 py-3 text-[12px] text-tono-text-softer italic">
                   rewarming the model…
                 </div>
-                {TONE_ORDER.map((axis) => (
+                {[selectedTone].map((axis) => (
                   <div
                     key={`skel-${axis}`}
                     className="bg-tono-bg-elev border border-tono-border rounded-[10px] p-2.5 tono-skel-pulse"
@@ -582,7 +605,7 @@ export default function TonoDemo() {
             ⌘/ctrl + enter to rewrite
           </span>
           <span className="text-[10px] font-mono lowercase text-tono-accent-light">
-            drafts stay in your browser
+            sent only after tone selection
           </span>
         </div>
       </div>

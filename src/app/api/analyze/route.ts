@@ -16,6 +16,11 @@ export async function POST(request: Request) {
   if (!body || typeof body.text !== 'string' || !body.text.trim()) {
     return NextResponse.json({ error: 'text is required' }, { status: 400 });
   }
+  const allowedAxes = ['warmer', 'clearer', 'funnier', 'safer'] as const;
+  if (!allowedAxes.includes(body.axis)) {
+    return NextResponse.json({ error: 'axis is required' }, { status: 400 });
+  }
+  const axes = [body.axis];
 
   const token = cookies().get('tono_api_token')?.value;
   const backendUrl = process.env.TONO_BACKEND_URL || 'https://api.tonoit.com';
@@ -28,7 +33,7 @@ export async function POST(request: Request) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         draft: body.text,
-        axes: ['warmer', 'clearer', 'funnier', 'safer'],
+        axes,
       }),
       cache: 'no-store',
     });
@@ -45,7 +50,7 @@ export async function POST(request: Request) {
     },
     body: JSON.stringify({
       text: body.text,
-      axes: ['warmer', 'clearer', 'funnier', 'safer'],
+      axes,
     }),
     cache: 'no-store',
   });

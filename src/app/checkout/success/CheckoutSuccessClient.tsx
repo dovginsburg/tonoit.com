@@ -186,7 +186,7 @@ function ActivePanel({ me }: { me: MeResponse | null }) {
           you're on tono pro.
         </h1>
         <p className="text-[15px] md:text-[16px] text-tono-text-soft leading-[1.6] mt-3 max-w-md mx-auto">
-          unlimited rewrites unlocked. the iOS keyboard is on its way — we'll email when it ships.
+          your subscription is active. choose one tone for each rewrite request.
         </p>
       </div>
       {me?.subscription_renews_at ? (
@@ -196,7 +196,7 @@ function ActivePanel({ me }: { me: MeResponse | null }) {
       ) : null}
       <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
         <Link
-          href="/app/app"
+          href="/app"
           className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-[12px] bg-tono-accent hover:bg-tono-accent-hover text-white font-semibold transition min-h-[44px] text-[14px] shadow-[0_8px_24px_rgba(168,85,247,0.30)]"
         >
           open the composer
@@ -258,7 +258,7 @@ function PendingPanel({
       ) : null}
       <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
         <Link
-          href="/app/app"
+          href="/app"
           className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-[12px] bg-tono-bg-elev border border-tono-border-strong text-tono-text hover:border-tono-accent font-semibold transition min-h-[44px] text-[14px]"
         >
           try the composer anyway

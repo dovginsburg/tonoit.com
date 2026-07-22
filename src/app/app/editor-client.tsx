@@ -9,7 +9,7 @@
 //   - no exclamation marks
 //   - the four tones named in copy match the on-screen accent color
 //   - "thinking…" / "rewriting…" loading (one word)
-//   - empty state IS the demo: "paste any text. four rewrites in two seconds."
+//   - empty state invites one explicit tone choice.
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
@@ -272,7 +272,7 @@ export function RewriteEditor({
               ref={textareaRef}
               value={draft}
               onChange={(e) => setDraft(e.target.value)}
-              placeholder="paste any text. four rewrites in two seconds."
+              placeholder="paste a draft. choose one tone."
               aria-label="Draft text"
               style={textareaStyle}
             />
@@ -320,7 +320,7 @@ export function RewriteEditor({
           <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '4px 2px' }}>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
               <h1 style={{ fontSize: 20, fontWeight: 600, letterSpacing: '-0.01em', margin: 0 }}>
-                {rewrites.length ? 'four ways to say it.' : 'paste. rewrite. send.'}
+                {rewrites.length ? 'your selected rewrite.' : 'paste. choose. rewrite.'}
               </h1>
               <span style={{ color: 'var(--text-softer)', fontSize: 13 }}>
                 {rewrites.length ? 'pick one, copy, send.' : ''}
@@ -495,7 +495,7 @@ function EmptyState() {
       <div style={{ fontSize: 48, marginBottom: 12, opacity: 0.4 }}>✎</div>
       <h3 style={{ fontSize: 18, fontWeight: 600, margin: 0 }}>paste. rewrite. send.</h3>
       <p style={{ color: 'var(--text-softer)', fontSize: 14, margin: '6px 0 0', maxWidth: 360, textAlign: 'center' }}>
-        type or paste a draft. tono will show you four rewrites — pick one, copy it, ship it.
+        type or paste a draft, choose one tone, then review the selected rewrite.
       </p>
     </div>
   );

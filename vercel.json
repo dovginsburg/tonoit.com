@@ -4,6 +4,7 @@
     { "source": "/", "destination": "/app" },
     { "source": "/pricing", "destination": "/app/pricing" },
     { "source": "/checkout/success", "destination": "/app/checkout/success" },
+    { "source": "/welcome-pro", "destination": "/app/checkout/success" },
     { "source": "/about", "destination": "/app/about" },
     { "source": "/contact", "destination": "/app/contact" },
     { "source": "/features", "destination": "/app/features" },

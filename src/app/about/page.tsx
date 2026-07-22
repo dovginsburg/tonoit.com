@@ -13,7 +13,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'about — tono',
-  description: 'why tono exists, who is building it, and what it isn\'t.',
+  description: 'why tono exists and how one intentional rewrite works.',
 }
 
 export default function AboutPage() {
@@ -36,7 +36,7 @@ export default function AboutPage() {
         <p className="text-tono-text-soft text-base md:text-lg leading-[1.65] mt-5">
           tono is a pre-send rewrite tool for the messages that matter. built
           by people who write to be read every day, and who got tired of
-          drafting the same paragraph six ways.
+          rewriting the same paragraph until it finally lands.
         </p>
 
         <section className="mt-12 space-y-8 text-[15px] leading-relaxed">
@@ -45,10 +45,9 @@ export default function AboutPage() {
               what tono is
             </h2>
             <p className="text-tono-text-soft">
-              a tool you paste a draft into. it returns four rewrites —
-              warmer, clearer, funnier, safer — each one labeled, each one
-              yours to edit, copy, or ignore. nothing leaves your browser on
-              the free tier.
+              a tool you paste a draft into. choose warmer, clearer, funnier,
+              or safer, then request one rewrite for that tone. safer remains
+              visible, and tono never sends on your behalf.
             </p>
           </div>
 
@@ -58,8 +57,8 @@ export default function AboutPage() {
             </h2>
             <ul className="list-disc pl-6 space-y-2 text-tono-text-soft">
               <li>an autoresponder — tono never sends on your behalf</li>
-              <li>a therapy bot — see our <a href="/app/privacy" className="underline hover:text-tono-text">privacy</a> page</li>
-              <li>a training data pipeline — nothing you write is used to train anything</li>
+              <li>a clinical or crisis service — see our <a href="/privacy" className="underline hover:text-tono-text">privacy</a> page</li>
+              <li>an automatic rewrite engine — requests follow your explicit tone choice</li>
             </ul>
           </div>
 
@@ -69,8 +68,7 @@ export default function AboutPage() {
             </h2>
             <p className="text-tono-text-soft">
               two builders, one designer, and a small but loud group of
-              beta testers. we're based in brooklyn and shipping on the ios
-              keyboard next. for press or partnerships, see <a href="mailto:hi@tonoit.com?subject=tono%20about" className="underline hover:text-tono-text">hi@tonoit.com</a>.
+              beta testers. for press or partnerships, see <a href="mailto:hi@tonoit.com?subject=tono%20about" className="underline hover:text-tono-text">hi@tonoit.com</a>.
             </p>
           </div>
 

@@ -11,29 +11,29 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'features — tono',
-  description: 'the four tones, free vs pro, ios keyboard, and how tono handles your drafts.',
+  description: 'one explicit tone choice, one rewrite, and safer always visible.',
 }
 
 const FEATURES = [
   {
-    label: 'four tones',
+    label: 'tone choice',
     title: 'warmer, clearer, funnier, safer.',
-    body: 'every draft becomes four. each one is named, colored, and ready to copy. you pick the one that fits the moment.',
+    body: 'choose one tone, then request one rewrite. there is no automatic batch or hidden sibling rewrite.',
   },
   {
-    label: 'privacy',
-    title: 'drafts stay in your browser.',
-    body: 'the free tier never sends your text to a server. signed-in pro users get quota + local history, never a server-side copy.',
+    label: 'safer',
+    title: 'safer remains visible.',
+    body: 'safer is always available as a tone choice. visibility never triggers generation on its own.',
   },
   {
-    label: 'ios keyboard',
-    title: 'rewrite inside any app.',
-    body: 'the tono ios keyboard ships with pro. highlight, rewrite in place, ship.',
+    label: 'request discipline',
+    title: 'one tap, one request.',
+    body: 'opening the tone choices requests nothing. a selected tone creates one atomic output.',
   },
   {
-    label: 'history',
-    title: 'the last 50 rewrites, locally.',
-    body: 'pro users get a local history of their last 50 rewrites. scroll back to yesterday\'s safer version of that angry reply.',
+    label: 'control',
+    title: 'you decide what gets sent.',
+    body: 'tono offers a rewrite to review and copy. it never sends a message on your behalf.',
   },
 ]
 
@@ -55,8 +55,7 @@ export default function FeaturesPage() {
           what tono does, on one page.
         </h1>
         <p className="text-tono-text-soft text-base md:text-lg leading-[1.65] mt-5">
-          four rewrite modes, no server-side copy on the free tier, an ios
-          keyboard, and a local history. that's the whole product.
+          four tone choices, one selected rewrite, and no automatic generation.
         </p>
 
         <div className="mt-12 space-y-5">

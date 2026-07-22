@@ -78,10 +78,10 @@ export default function LoginPage() {
       <main className="grid place-items-center px-6 py-12 md:py-20">
         <div className="w-full max-w-[440px] bg-tono-bg-card border border-tono-border rounded-[18px] p-7 md:p-8 shadow-[0_24px_64px_rgba(0,0,0,0.4)]">
           <h1 className="text-[28px] md:text-[32px] font-bold tracking-[-0.02em] text-tono-text leading-[1.15]">
-            four ways to say it.
+            one choice. one rewrite.
           </h1>
           <p className="text-tono-text-softer text-[14px] mt-2 mb-7">
-            pick one, copy, send.
+            choose a tone, review the result, decide what to send.
           </p>
 
           {/* OAuth buttons */}
@@ -155,7 +155,7 @@ export default function LoginPage() {
           )}
 
           <p className="mt-8 text-[12px] text-tono-muted text-center">
-            by signing in, you agree tono holds your drafts. nothing else.
+            by signing in, you agree to the privacy policy and terms.
           </p>
 
           {process.env.NODE_ENV !== 'production' && (

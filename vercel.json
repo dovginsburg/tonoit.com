@@ -11,11 +11,11 @@
     { "source": "/privacy", "destination": "/app/privacy" },
     { "source": "/terms", "destination": "/app/terms" },
     { "source": "/upgrade", "destination": "/app/pricing" },
-    { "source": "/sitemap.xml", "destination": "/app/sitemap.xml" },
-    { "source": "/robots.txt", "destination": "/app/robots.txt" },
     { "source": "/api/checkout", "destination": "/app/api/checkout" },
     { "source": "/api/health", "destination": "/app/api/health" },
     { "source": "/api/analyze", "destination": "/app/api/analyze" },
-    { "source": "/api/me", "destination": "/app/api/me" }
+    { "source": "/api/me", "destination": "/app/api/me" },
+    { "source": "/sitemap.xml", "destination": "/app/sitemap.xml" },
+    { "source": "/robots.txt", "destination": "/app/robots.txt" }
   ]
 }

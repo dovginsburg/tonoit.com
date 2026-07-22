@@ -13,10 +13,19 @@ const nextConfig = {
   // required for cookie-based sessions to stick (Sherlock's runbook #1).
   async rewrites() {
     return [
-      // SEO surface at the apex so /sitemap.xml and /robots.txt return 200
-      // (basePath is applied to the destination, so /sitemap.xml → /app/sitemap.xml).
-      { source: '/sitemap.xml', destination: '/sitemap.xml' },
-      { source: '/robots.txt', destination: '/robots.txt' },
+      // SEO surface at the apex. With basePath '/app', Next.js exposes
+      // /app/robots.txt and /app/sitemap.xml via the route handlers; we
+      // mirror them at the apex /robots.txt and /sitemap.xml so crawlers
+      // (and human visitors) hit the canonical route-handler content
+      // even when the URL has no basePath prefix.
+      //
+      // Launch-audit GAP-12: the previous vercel.json apex rewrites
+      // shadowed the route handlers with an inverted form that didn't
+      // permit "/" in the route-handler payload. Doing the rewrite at
+      // the Next.js layer (instead of the Vercel router layer) means
+      // the route handlers always own the canonical payload.
+      { source: '/robots.txt', destination: '/app/robots.txt' },
+      { source: '/sitemap.xml', destination: '/app/sitemap.xml' },
 
       // Tono backend
       { source: '/api/tono/:path*', destination: 'https://api.tonoit.com/v1/:path*' },

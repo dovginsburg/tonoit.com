@@ -1,6 +1,18 @@
 User-agent: *
 Allow: /
+Allow: /pricing
+Allow: /features
+Allow: /about
+Allow: /contact
+Allow: /blog
+Allow: /privacy
+Allow: /terms
+Allow: /login
+Allow: /checkout/success
+Disallow: /app
+Disallow: /history
 Disallow: /api/
+Disallow: /auth/
 
 # Tono — pre-send rewrite tool
 # Marketing: https://tonoit.com

@@ -21,12 +21,22 @@ const config: Config = {
           'text-soft': '#C9C9D1',
           'text-softer': '#9CA3AF',
           muted: '#6B7280',
+          // danger — used by error/alert banners (TonoDemo, error.tsx)
+          danger: '#F87171',
           accent: '#A855F7',
           'accent-hover': '#9333EA',
           'accent-soft': 'rgba(168,85,247,0.12)',
           'accent-softer': 'rgba(168,85,247,0.06)',
           'accent-light': '#D8B4FE',
           'accent-glow': 'rgba(168,85,247,0.35)',
+          // Mirror the 4 tone accents under `tono.*` so we can write
+          // text-tono-tone-warmer / bg-tono-tone-warmer when a token
+          // needs both an accent-color and a tonal hue (e.g. offline-
+          // indicator). See TonoDemo header dot.
+          'tone-warmer': '#F472B6',
+          'tone-clearer': '#38BDF8',
+          'tone-funnier': '#FBBF24',
+          'tone-safer': '#34D399',
         },
         'tone-warmer': '#F472B6',
         'tone-clearer': '#38BDF8',
